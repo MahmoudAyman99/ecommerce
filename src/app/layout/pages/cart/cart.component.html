@@ -1,0 +1,40 @@
+<div class="w-10/12 mx-auto py-6 bg-gray-100">
+    <div class=" ps-2">
+        <div class=" mb-4">
+            <h2>Shop Cart:</h2>
+        @if (myCart?.data?.products?.length !== 0) {
+            <h6 class="text-main">Total Cart Price : {{myCart?.data?.totalCartPrice}} EGP</h6>
+        <button class="btn-main " [routerLink]="['/checkout',myCart.cartId]">Payment</button>
+        }
+        </div>
+        @for (product of myCart?.data?.products; track $index) {
+            <div class="mb-2 flex flex-wrap border-b-2 justify-between items-center ">
+                <div class="w-2/12 max-md:w-full">
+                    <img [src]="product.product.imageCover" [alt]="product.product.title" class="w-full">
+                </div>
+                <div class="w-7/12 flex flex-col ps-4 max-md:w-full">
+                    <h2>{{product.product.title}}</h2>
+                    <span class="text-main">Price : {{product.price}}</span>
+                    <div>
+                        <i class="fa-solid fa-trash text-main cursor-pointer me-2" (click)="removeSpecItem(product.product._id)"></i>
+                        <span class="text-main cursor-pointer" (click)="removeSpecItem(product.product._id)">Remove</span>
+                    </div>
+                </div>
+                <div class="w-3/12 flex gap-x-3 items-center justify-end pe-6 max-md:w-full">
+                    <i class="fa-solid fa-plus-square text-main cursor-pointer" (click)="updateQuantity(product.product._id , product.count+1)"></i>
+                    <span>{{product.count}}</span>
+                    <i class="fa-solid fa-minus-square text-main cursor-pointer" (click)="updateQuantity(product.product._id , product.count-1)"></i>
+                </div>
+            </div>
+            
+        }
+        @empty {
+            <img src="./assets/images/empty-cart.png" alt="empty-cart">
+        }
+        
+        @if (myCart?.data?.products?.length !== 0) {
+            <button class="btn-main w-full my-2 " (click)="removeAllproducts()">Remove All products from Cart</button>
+        }
+        
+    </div>
+</div>

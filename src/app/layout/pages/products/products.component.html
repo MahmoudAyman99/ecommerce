@@ -1,0 +1,49 @@
+<div class="w-10/12 max-md:w-full max-md:flex-col mx-auto flex py-6">
+    
+<div class="w-3/4 main-img max-md:w-full">
+    <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide><img src="./assets/images/main-slider-1.jpeg" alt="main-slider-1" class="w-full"></ng-template>  
+        <ng-template carouselSlide><img src="./assets/images/main-slider-2.jpeg" alt="main-slider-2" class="w-full"></ng-template>  
+        <ng-template carouselSlide><img src="./assets/images/main-slider-3.jpeg" alt="main-slider-3" class="w-full"></ng-template>  
+      </owl-carousel-o>
+</div>
+<div class="w-1/4 max-md:w-full secondary-img">
+    <img src="./assets/images/main-slider-2.jpeg" alt="main-slider-2" class="w-full">
+    <img src="./assets/images/main-slider-3.jpeg" alt="main-slider-3" class="w-full">
+</div>
+</div>
+<input type="text"  class=" block w-1/2 mx-auto rounded rounded-s  border-gray-400 mt-2" [(ngModel)]="searchTerm" placeholder="Search with title.....">
+<div class="w-10/12 mx-auto flex flex-wrap gap-y-8  ">
+@for (product of productList |filter :searchTerm; track $index )  {
+    <div class="max-md:w-full   max-lg:w-1/3 max-2xl:w-1/6  p-3  " [title]="product.title" >
+
+           <div class="product-card shadow-sm h-full relative" >
+            <div class=" flex flex-col justify-between gap-2 overflow-hidden  rounded-md p-2">
+                <div class="cursor-pointer flex flex-col justify-between" [routerLink]="['/productDetails' , product._id]">
+                    <img [src]="product.imageCover" [alt]="product.title" class="w-full">
+                <h3 class="text-main">{{product.category.name}}</h3>
+                <h5>{{product.title.split(" ",4).join(" ")}}</h5>
+                <div class="flex justify-between">
+                    <span>{{product.price | currency :'EGP'}} </span>
+                    <span><i class="fa-solid fa-star rating-color"></i>{{product.ratingsAverage}}</span>
+                </div>
+                </div>
+                <button class="btn-main w-full" (click)="addProduct(product._id)">Add product
+                    @if (loading) {
+                        <i class="fa-solid fa-spin fa-spinner"></i>
+                      }
+                </button>
+                        <button class="absolute top-2 end-3 text-2xl cursor-pointer"
+                        [ngClass]="{'text-main' : isProductFav(product._id)}"
+                        (click)="addToWishlist(product._id)"
+                        >
+                            <i class="fa-solid fa-heart  " ></i>
+                        </button>
+                        
+                    
+                
+            </div>
+           </div>
+    </div>
+}
+</div>

@@ -1,0 +1,25 @@
+
+<div class="w-10/12 mx-auto py-6 bg-gray-100">
+    <div class=" ps-2">
+        <div class=" mb-4">
+            <h1 class="font-black text-2xl">wishlist :</h1>
+        </div>
+        @for (product of wishlistProducts?.data; track $index) {
+            <div class="mb-2 flex flex-wrap border-b-2 justify-between items-center ">
+                <div class="w-2/12 max-md:w-full">
+                    <img [src]="product.imageCover" [alt]="product.title" class="w-full">
+                </div>
+                <div class="w-7/12 flex flex-col ps-4 max-md:w-full">
+                    <h2>{{product.title}}</h2>
+                    <div>
+                        <i class="fa-solid fa-trash text-main cursor-pointer me-2" (click)="removeProductFromWishlistr(product._id)"></i>
+                        <span class="text-main cursor-pointer" (click)="removeProductFromWishlistr(product._id)">Remove</span>
+                    </div>
+                </div>
+              
+            </div>
+            
+        }
+    </div>
+</div>
+

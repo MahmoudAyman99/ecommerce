@@ -1,0 +1,13 @@
+.btn-main{
+    transform: translateY(150%);
+    transition: all .8s;
+}
+.product-card:hover .btn-main{
+    transform: translateY(0);
+}
+.main-img img{
+    height: 400px;
+}
+.secondary-img img{
+    height: 200px;
+}

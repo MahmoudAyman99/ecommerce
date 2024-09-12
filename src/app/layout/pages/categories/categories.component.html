@@ -1,0 +1,31 @@
+<div class="w-10/12 mx-auto flex flex-wrap gap-y-4 ">
+    
+    @for (category of categoriesList; track $index) {
+        <div class="max-md:w-full    max-2xl:w-1/3  p-3  "  >
+
+            <div class=" border-2 flex flex-col justify-between gap-2 overflow-hidden product-card rounded-md cursor-pointer" (click)="getSubCategory(category.name,category._id)">
+                <img [src]="category.image" [alt]="category.name" class="w-full" style="height: 300px;">
+                <h1 class="text-main text-center py-3 font-bold text-xl">{{category.name}}</h1>
+             </div>
+     </div>
+        
+        
+    }
+    </div>
+    @if(categoryName !== ""){
+        <h1 class="text-main font-extrabold text-4xl text-center py-3">{{categoryName}} subcategories</h1>
+        <div class="w-10/12 mx-auto flex flex-wrap gap-y-4 ">
+    
+            @for (subCategory of subCategoriesList; track $index) {
+                <div class="max-md:w-full    max-2xl:w-1/3  p-3  "  >
+        
+                    <div class=" border-2 flex flex-col justify-between gap-2 overflow-hidden product-card rounded-md " >
+                        <h1 class=" text-center py-3 font-extrabold text-xl">{{subCategory.name}}</h1>
+                     </div>
+             </div>
+                
+                
+            }
+            </div>
+    }
+

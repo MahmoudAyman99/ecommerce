@@ -1,0 +1,15 @@
+<h1 class="text-main font-black text-4xl text-center py-3">All Brands</h1>
+<div class="w-10/12 mx-auto flex flex-wrap gap-y-4 ">
+   
+    @for (brand of brandsList; track $index) {
+        <div class="max-md:w-full   max-lg:w-1/3 max-2xl:w-1/6  p-3  "  >
+
+            <div class=" border-2 flex flex-col justify-between gap-2 overflow-hidden product-card rounded-md" >
+                    <img [src]="brand.image" [alt]="brand.name" class="w-full">
+                    <h1 class=" text-center py-3 font-bold text-xl">{{brand.name}}</h1>
+                
+             </div>
+     </div>
+        
+    }
+    </div>

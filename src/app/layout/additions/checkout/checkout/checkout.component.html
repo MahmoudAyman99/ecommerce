@@ -1,0 +1,51 @@
+<div class="w-10/12 mx-auto">
+    <form [formGroup]="checkoutForm" (ngSubmit)="checkoutApi()">
+            <div class="my-2">
+                <label for="details">details :</label>
+                <input type="text" id="details" class="w-full rounded rounded-s  border-gray-400 mt-2" formControlName="details">
+                @if (checkoutForm.get("details")?.touched && checkoutForm.get("details")?.errors) {
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                            <p>details is required</p>
+                      </div>
+                }
+            </div>
+            <div class="my-2">
+                <label for="phone">phone :</label>
+                <input type="tel" id="phone" class="w-full rounded rounded-s  border-gray-400 mt-2" formControlName="phone">
+                @if (checkoutForm.get("phone")?.touched && checkoutForm.get("phone")?.errors) {
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        @if (checkoutForm.get("phone")?.getError("required")) {
+                            <p>phone is required</p>
+                        }
+                        @else if (checkoutForm.get("phone")?.getError("pattern")) {
+                            <p>your phone is invaild</p>
+                        }
+                      </div>
+                }
+            </div>
+            <div class="my-2">
+                <label for="city">city :</label>
+                <input type="text" id="city" class="w-full rounded rounded-s  border-gray-400 mt-2" formControlName="city">
+                @if (checkoutForm.get("city")?.touched && checkoutForm.get("city")?.errors) {
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                            <p>city is required</p>
+                      </div>
+                }
+            </div>
+            <button class="btn-main w-full" [disabled]="checkoutForm.invalid">Submit
+                @if (loading) {
+                    <i class="fa-solid fa-spin fa-spinner"></i>
+                  }
+            </button>
+    </form>
+</div>
+
